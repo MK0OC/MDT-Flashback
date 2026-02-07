@@ -1,0 +1,99 @@
+.citizen-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.citizen-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.citizen-details-header-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.citizen-details-header-title {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.citizen-details-content {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #ffffff;
+}
+
+.citizen-details-content-details {
+  flex: 1;
+  margin-top: 0.3rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.258);
+}
+
+.detail-label {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  margin-bottom: 0.2rem;
+}
+
+.detail-value {
+  font-size: 0.85rem;
+  margin-bottom: 0.2rem;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.indicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.indicator-red {
+  background-color: #e53e3e;
+}
+
+.indicator-green {
+  background-color: #38a169;
+}
+
+.citizen-details-body {
+  display: flex;
+  flex: 1;
+}
+
+.citizen-details-body-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.citizen-details-body-actions {
+  display: flex;
+  flex-direction: column;
+  min-width: 17vw;
+  max-width: 17vw;
+  gap: 0.5rem;
+  max-height: 45vh;
+  overflow-y: auto;
+
+  > * {
+    flex-shrink: 0;
+  }
+}

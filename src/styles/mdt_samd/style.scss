@@ -1,0 +1,41 @@
+.mdt-samd-content {
+  flex: 1;
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  color: white;
+}
+
+.mdt-samd-citizen-details {
+  flex: 1;
+}
+
+.mdt-samd-layout {
+  display: flex;
+  flex-direction: row;
+}
+
+.mdt-samd-searching {
+    min-width: 20vw;
+    max-width: 20vw;
+}
+
+.mdt-samd-citizen-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.citizen-btn-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.mdt-samd-create-user-popup {
+  display: grid;
+  grid-template-columns: minmax(400px, 1fr) minmax(300px, 1fr);
+  gap: 10px;
+}
+

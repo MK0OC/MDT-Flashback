@@ -1,0 +1,29 @@
+.mdt-admin-content {
+  flex: 1;
+  padding: 1rem;
+  color: white;
+}
+
+.mdt-admin-layout {
+  display: flex;
+  flex-direction: row;
+}
+
+
+.mdt-admin-pending-user {
+  background-color: rgba(102, 13, 13, 0.3);
+}
+
+.mdt-admin-users-delete {
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #ff0000;
+  }
+}
+
+.mdt-admin-table-action {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

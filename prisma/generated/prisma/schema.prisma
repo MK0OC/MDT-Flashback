@@ -1,0 +1,200 @@
+model Citizen {
+  id String @id @default(uuid())
+
+  firstname   String
+  lastname    String
+  email       String
+  phonenumber String
+  weight      String
+  height      String
+  sex         String
+  birthdate   DateTime
+  picture     String?
+
+  // SAMD
+  intervention       Interventions[]    @relation("Interventions")
+  attentingMedic     String?
+  emergencyContacts  EmergencyContact[] @relation("CitizenEmergencyContacts")
+  emergencyContactOf EmergencyContact[] @relation("EmergencyContactCitizen")
+  bloodType          BloodType?
+  mutual             String?
+  addictions         String?
+  allergies          String?
+  threatments        String?
+  pathology          String?
+  pathologies        Pathologies[]      @relation("CitizenPathologies")
+  contraindications  String?
+  Antecedents        String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("citizen")
+}
+
+enum BloodType {
+  A_POSITIVE
+  A_NEGATIVE
+  B_POSITIVE
+  B_NEGATIVE
+  AB_POSITIVE
+  AB_NEGATIVE
+  O_POSITIVE
+  O_NEGATIVE
+}
+
+model EmergencyContact {
+  id String @id @default(uuid())
+
+  citizen   Citizen @relation("CitizenEmergencyContacts", fields: [citizenId], references: [id])
+  citizenId String
+
+  contact   Citizen @relation("EmergencyContactCitizen", fields: [contactId], references: [id])
+  contactId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([citizenId, contactId])
+  @@map("emergency_contact")
+}
+
+model Pathologies {
+  id String @id @default(uuid())
+
+  citizen   Citizen @relation("CitizenPathologies", fields: [citizenId], references: [id])
+  citizenId String
+
+  doctor      String
+  diagnosis   String
+  description String
+  report      String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("pathologies")
+}
+
+model Interventions {
+  id String @id @default(uuid())
+
+  citizen   Citizen @relation("Interventions", fields: [citizenId], references: [id])
+  citizenId String
+
+  clinicalExam String
+  careProvided String
+  checkup      String
+  ata          Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("interventions")
+}
+
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+//---------------------------------------------------------------------------------------------------
+
+enum MDT {
+  SAMD
+  SAFD
+  SASP
+  MCD
+  DOJ
+}
+
+enum Role {
+  SUPERADMIN
+  USER
+}
+
+enum UserStatus {
+  PENDING
+  ACTIVE
+}
+
+model User {
+  id            String  @id @default(uuid())
+  name          String
+  email         String
+  emailVerified Boolean @default(false)
+  image         String?
+  discordId     String?
+
+  status  UserStatus @default(PENDING)
+  role    Role       @default(USER)
+  granted Boolean    @default(true)
+
+  mdtAccess MDT[]
+  sessions  Session[]
+  accounts  Account[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([email])
+  @@map("user")
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  expiresAt DateTime
+  token     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@index([userId])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id @default(uuid())
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@index([userId])
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([identifier])
+  @@map("verification")
+}

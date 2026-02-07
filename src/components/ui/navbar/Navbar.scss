@@ -1,0 +1,126 @@
+.navbar-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 16%;
+  height: 100vh;
+  box-sizing: border-box;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  color: white
+}
+
+.navbar-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 0;
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar-logo {
+  object-fit: contain;
+}
+
+.navbar-container {
+  flex: 1;
+  width: 100%;
+  overflow-y: auto;
+  padding: 0.5rem 0;
+}
+
+.navbar-section {
+  width: 100%;
+}
+
+.navbar-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.625rem 1.25rem;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.navbar-chevron {
+  transition: transform 0.2s;
+  color: rgba(255, 255, 255, 0.5);
+
+  &.open {
+    transform: rotate(180deg);
+  }
+}
+
+.navbar-section-items {
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar-item {
+  display: block;
+  padding: 0.5rem 1.25rem 0.5rem 2rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8125rem;
+  text-decoration: none;
+  transition: background-color 0.15s, color 0.15s;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+  }
+
+  &.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    font-weight: 500;
+  }
+}
+
+.navbar-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.navbar-link {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.2s;
+  font-weight: 500;
+
+  &:hover {
+    color: #ffffff;
+  }
+}
+
+.navbar-logout {
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 6px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #fca5a5;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+
+  &:hover {
+    background-color: rgba(239, 68, 68, 0.3);
+    color: #fecaca;
+  }
+}

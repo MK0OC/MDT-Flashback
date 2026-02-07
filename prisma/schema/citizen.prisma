@@ -1,0 +1,34 @@
+model Citizen {
+  id          String   @id @default(uuid())
+
+  firstname   String
+  lastname    String
+  email       String
+  phonenumber String
+  weight      String
+  height      String
+  sex         String
+  birthdate DateTime
+  picture   String?
+
+  // SAMD
+  intervention Interventions[] @relation("Interventions")
+  attentingMedic String?
+  emergencyContacts   EmergencyContact[] @relation("CitizenEmergencyContacts")
+  emergencyContactOf  EmergencyContact[] @relation("EmergencyContactCitizen")
+  bloodType BloodType?
+  mutual String?
+  addictions String?
+  allergies String?
+  threatments String?
+  pathology String?
+  pathologies Pathologies[] @relation("CitizenPathologies")
+  contraindications String?
+  Antecedents String?
+
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("citizen")
+}

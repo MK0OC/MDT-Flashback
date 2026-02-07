@@ -1,0 +1,49 @@
+.btn {
+    padding: 5px 20px;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    &:active:not(:disabled) {
+        transform: scale(0.99);
+    }
+
+    &.default {
+        color: #ffffff;
+        background-color: #4f46e5;
+
+        &:hover {
+            background-color: #4338ca;
+        }
+    }
+
+    &.citizen {
+        color: #ffffff;
+        background-color: #2d2875;
+
+        &:hover {
+            background-color: #383287;
+        }
+    }
+
+    &.delete {
+        color: #ffffff;
+        background-color: #dc2626;
+
+        &:hover {
+            background-color: #b91c1c;
+        }
+    }
+}
